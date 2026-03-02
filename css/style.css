@@ -1,5 +1,8 @@
 /* ========================================Global======================================== */
-
+body{
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+               "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
 body,
 section {
   background-color: #fff;
@@ -169,7 +172,7 @@ p,
 
 .thumbnails {
   margin-top: 40px;
-  display: flex;
+
   justify-content: center;
   gap: 20px;
 }
@@ -246,17 +249,15 @@ p,
 .side-label span {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-
   font-size: 120px;
   font-weight: 700;
   color: rgba(0,0,0,0.08);
   letter-spacing: 6px;
 }
 .side-label.smaller span {
-writing-mode: vertical-rl;
+  writing-mode: vertical-rl;
   transform: rotate(180deg);
-
-  font-size: 75px;
+  font-size: 70px;
   font-weight: 700;
   color: rgba(0,0,0,0.08);
   letter-spacing: 6px;
@@ -293,14 +294,14 @@ writing-mode: vertical-rl;
   width: 100%;
 }
 
-.swiper-slide {
+.certSwiper .swiper-slide {
   width: 160px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.swiper-slide img {
+.certSwiper .swiper-slide img {
   height: 60px;
   width: auto;
 }
@@ -396,7 +397,9 @@ writing-mode: vertical-rl;
   border-radius: 8px;
   transition: all 0.3s ease;
 }
-
+.download-card.deep-blue{
+  background: #0b5777;
+}
 .download-card span{
   font-size: 20px;
   font-weight: 600;
@@ -498,21 +501,32 @@ writing-mode: vertical-rl;
 .z-1 {
   z-index: 1;
 }
-
-.btn-orange {
+.btn-orange:hover {
   background-color:#ef7d00;
-  border-color:#ef7d00;
-  color: white;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-  font-weight: 600;
+  color: #1E212C;
+}
+.btn-orange{
+  position: relative;
+  overflow: hidden;
 }
 
-.btn-orange:hover {
-  background-color: #d67102;
-  border-color: #d67102;
-  color: white;
-  transform: translateY(-2px);
+.btn-orange::before{
+  content: "";
+  position: absolute;
+  top: 0; left: -80%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.5),
+    transparent
+  );
+  transition: transform .6s ease;
+}
+
+.btn-orange:hover::before{
+  transform: translateX(260%);
 }
 p.lead {
   font-size: 1.1rem;
@@ -540,13 +554,17 @@ p.lead {
 }
 
 .img-container {
-  height: 180px;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
+.img-container img{
+    height: 200px;
+    max-width: fit-content;
+}
 .btn-orange {
+  font-weight: 600;
   background-color:#d67102;;
   color: #1E212C;
   border-radius: 0;
@@ -555,10 +573,6 @@ p.lead {
   border: none;
 }
 
-.btn-orange:hover {
-  background-color: #d67102;;
-  color: #1E212C;
-}
 
 /* Navigation Arrows Styling */
 .carousel-controls .btn {
@@ -628,7 +642,7 @@ p.lead {
 
 .product-section-wrapper {
   position: sticky;
-  top: 100px; /* 距離頂部多少開始固定 */
+  top: 100px; 
 }
 
 #goTop {
@@ -654,77 +668,9 @@ p.lead {
   background-color: #EE7700;
 }
 
-/* 四個角的線條 */
-.btn-orange::before,
-.btn-orange::after,
-.btn-orange span::before,
-.btn-orange span::after {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border: 2px solid #1E212C;
-  opacity: 0;
-  transition: all 0.3s;
-}
-
-/* 左上角 */
-.btn-orange::before {
-  top: 0;
-  left: 0;
-  border-right: none;
-  border-bottom: none;
-}
-
-/* 右下角 */
-.btn-orange::after {
-  bottom: 0;
-  right: 0;
-  border-left: none;
-  border-top: none;
-}
-
-/* 左下角 */
-.btn-orange span::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 10px;
-  height: 10px;
-  border-top: none;
-  border-right: none;
-  border: 2px solid #1E212C;
-  opacity: 0;
-  transition: all 0.3s;
-}
-
-/* 右上角 */
-.btn-orange span::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 10px;
-  height: 10px;
-  border-bottom: none;
-  border-left: none;
-  border: 2px solid #1E212C;
-  opacity: 0;
-  transition: all 0.3s;
-}
-
-/* Hover 時顯示 */
-.btn-orange:hover::before,
-.btn-orange:hover::after,
-.btn-orange:hover span::before,
-.btn-orange:hover span::after {
-  opacity: 1;
-}
-
 .info-section {
-    padding: 30px;
-    background: #ee7702;
+  border: 2px solid #ee7702;
+  padding: 30px;
 }
 .info-section h3{
   margin-bottom: 10px;
@@ -733,3 +679,56 @@ p.lead {
 .info-section ul li{
   color: #1E212C;
 }
+
+.product-swiper .swiper-slide {
+  height: auto;
+}
+
+.product-card {
+  height: 100%;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none; 
+}
+
+.swiper-button-prev i {
+  transform: rotate(180deg);
+}
+
+.swiper-button-prev i,
+.swiper-button-next i {
+  font-size: 28px;
+  color: #EE7800;
+}
+.swiper-button-prev, .swiper-rtl .swiper-button-next{
+  left: 0;
+}
+.swiper-button-next, .swiper-rtl .swiper-button-prev{
+  right: 0;
+}
+
+
+@media (max-width: 1200px){
+  .custom-tabs .nav-link{
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 991px){
+  .custom-tabs .nav-link{
+    font-size: 14px;
+    padding: 12px 0px;
+  }
+}
+@media (max-width: 768px){
+  .custom-tabs .nav-item {
+    width: 48%;
+    flex: none;
+}
+.img-container img{
+    height: 200px;
+    max-width: 100%;
+}
+}
+
